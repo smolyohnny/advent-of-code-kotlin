@@ -16,45 +16,47 @@ private fun solvePart1() {
     for (line in input) {
         val strArr = line.split(" ").toTypedArray()
         val intList: MutableList<Int> = mutableListOf()
+        var isSafe = false
 
         for (i in strArr) intList.add(i.toInt())
 
-        var IsSafe = false
         for (i in 0..intList.size - 2) {
             if (intList[i] > intList[i + 1] && intList[i] - intList[i + 1] <= 3) {
-                if (i == intList.size - 2) IsSafe = true
+                if (i == intList.size - 2) isSafe = true
             } else break
         }
         for (i in 0..intList.size - 2) {
             if (intList[i] < intList[i + 1] && intList[i + 1] - intList[i] <= 3) {
-                if (i == intList.size - 2) IsSafe = true
+                if (i == intList.size - 2) isSafe = true
             } else break
         }
-        if (IsSafe) sum1++
+        if (isSafe) sum1++
     }
     println(sum1)
 }
 
 private fun solvePart2() {
     for (line in input) {
-        var IsSafe = false
+        var isSafe = false
         val strArr = line.split(" ").toTypedArray()
         val intList: MutableList<Int> = mutableListOf()
+
         for (i in strArr) intList.add(i.toInt())
+
         for (l in 0..<intList.size) {
             val altList = removeElement(intList, l)
             for (i in 0..altList.size - 2) {
                 if (altList[i] > altList[i + 1] && altList[i] - altList[i + 1] <= 3) {
-                    if (i == altList.size - 2) IsSafe = true
+                    if (i == altList.size - 2) isSafe = true
                 } else break
             }
             for (i in 0..altList.size - 2) {
                 if (altList[i] < altList[i + 1] && altList[i + 1] - altList[i] <= 3) {
-                    if (i == altList.size - 2) IsSafe = true
+                    if (i == altList.size - 2) isSafe = true
                 } else break
             }
         }
-        if (IsSafe) sum2++
+        if (isSafe) sum2++
     }
     println(sum2)
 }
